@@ -42,6 +42,11 @@ export default function Home() {
                 About Us
               </Button>
             </Link>
+            <Link href="/api-test">
+              <Button size="lg" variant="outline">
+                Test API
+              </Button>
+            </Link>
           </div>
         </div>
 
