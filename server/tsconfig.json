@@ -9,9 +9,9 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "outDir": "./dist",
-    "rootDir": "./"
+    "rootDir": "../"
   },
-  "include": ["**/*.ts"],
+  "include": ["**/*.ts", "../amplify/**/*.ts"],
   "exclude": ["node_modules", "dist"]
 }
 
