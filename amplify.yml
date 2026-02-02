@@ -12,11 +12,30 @@ frontend:
   phases:
     preBuild:
       commands:
-        - cd web-app
+        - echo "Current directory: $(pwd)"
+        - echo "Listing files:"
+        - ls -la
+        - |
+          if [ -d "web-app" ]; then
+            cd web-app
+          elif [ -d "$CODEBUILD_SRC_DIR/web-app" ]; then
+            cd $CODEBUILD_SRC_DIR/web-app
+          else
+            echo "ERROR: web-app directory not found"
+            exit 1
+          fi
         - yarn install
     build:
       commands:
-        - cd web-app
+        - |
+          if [ -d "web-app" ]; then
+            cd web-app
+          elif [ -d "$CODEBUILD_SRC_DIR/web-app" ]; then
+            cd $CODEBUILD_SRC_DIR/web-app
+          else
+            echo "ERROR: web-app directory not found"
+            exit 1
+          fi
         - yarn build
   artifacts:
     baseDirectory: web-app/out
