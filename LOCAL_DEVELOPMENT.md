@@ -30,7 +30,7 @@ After LocalStack is running, initialize your resources:
 npm run setup:local
 ```
 
-This creates tables, buckets, queues, etc. defined in `server/lib/localstack-setup.ts`.
+This creates tables, buckets, queues, etc. defined in `amplify/lib/localstack-setup.ts`.
 
 ### 3. Start Backend
 
@@ -66,20 +66,22 @@ npm run dev
 ```
 aws-test-app/
 ├── docker-compose.yml          # LocalStack configuration
-├── server/
+├── amplify/
 │   ├── handler.ts              # Your Lambda handler
-│   ├── lambda-http-server.ts  # Local HTTP server for Lambda
-│   ├── lib/
-│   │   ├── aws-config.ts      # AWS SDK configuration (LocalStack/production)
-│   │   └── localstack-setup.ts # Resource initialization
-│   └── example-handler-with-aws.ts # Examples using AWS services
+│   ├── backend.ts              # Amplify Gen 2 backend definition
+│   ├── resources.ts            # Lambda function definition
+│   └── lib/
+│       ├── aws-config.ts      # AWS SDK configuration (LocalStack/production)
+│       └── localstack-setup.ts # Resource initialization
+├── server/
+│   └── lambda-http-server.ts  # Local HTTP server for Lambda (dev only)
 ```
 
 ## 🔧 How It Works
 
 ### AWS SDK Configuration
 
-The `server/lib/aws-config.ts` file automatically:
+The `amplify/lib/aws-config.ts` file automatically:
 - **Development**: Uses LocalStack at `http://localhost:4566`
 - **Production**: Uses real AWS (from environment/IAM role)
 
@@ -142,5 +144,5 @@ No code changes needed!
 
 - [LocalStack Documentation](https://docs.localstack.cloud/)
 - [AWS SDK v3 Documentation](https://docs.aws.amazon.com/sdk-for-javascript/v3/)
-- See `server/example-handler-with-aws.ts` for code examples
+- See `amplify/handler.ts` for Lambda handler examples
 

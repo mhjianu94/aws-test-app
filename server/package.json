@@ -6,7 +6,7 @@
     "build": "echo 'Build complete'",
     "sandbox": "npx ampx sandbox",
     "dev": "nodemon --exec 'tsx lambda-http-server.ts'",
-    "setup:local": "tsx lib/localstack-setup.ts"
+    "setup:local": "tsx ../amplify/lib/localstack-setup.ts"
   },
     "dependencies": {
       "@aws-amplify/backend": "^1.0.0",

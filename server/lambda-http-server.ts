@@ -1,5 +1,5 @@
 import http from 'http';
-import { handler } from './handler.js';
+import { handler } from '../amplify/handler.js';
 
 const PORT = process.env.PORT || 3001;
 

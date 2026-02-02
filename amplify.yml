@@ -4,9 +4,9 @@ backend:
     build:
       commands:
         - echo "Starting backend build..."
-        - cd server && npm install
+        - cd amplify && npm install
         - echo "Deploying backend with Amplify Gen 2..."
-        - npx ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID || echo "Backend will be set up after frontend deployment"
+        - cd .. && npx ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID || echo "Backend will be set up after frontend deployment"
 frontend:
   phases:
     preBuild:
@@ -23,4 +23,5 @@ frontend:
     paths:
       - web-app/node_modules/**/*
       - web-app/.next/cache/**/*
+      - amplify/node_modules/**/*
       - server/node_modules/**/*
