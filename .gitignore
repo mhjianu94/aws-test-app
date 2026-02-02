@@ -18,9 +18,12 @@ web-app/build/
 .env.*.local
 
 # Amplify
-amplify/
+# Note: amplify/ directory is needed for Gen 2 backend - do not ignore
+amplify_outputs.json
 server/amplify_outputs.json
 web-app/amplify_outputs.json
+amplify/.amplify-hosting/
+amplify/node_modules/
 
 # LocalStack data
 localstack-data/
