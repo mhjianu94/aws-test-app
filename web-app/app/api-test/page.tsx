@@ -13,7 +13,7 @@ export default function ApiTest() {
 
     // These URLs will be provided by Amplify backend outputs
     // For now, using placeholder - will be replaced during deployment
-    const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';
+    const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
     const testHealth = async () => {
         setLoading(true);

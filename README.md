@@ -13,43 +13,32 @@ aws-test-app/
 
 ## Local Development
 
-### Backend (Server)
+### Quick Start (Recommended)
 
-1. Navigate to server directory:
+Run frontend, backend, and LocalStack (AWS emulation) with hot reload:
+
 ```bash
-cd server
+# Install all dependencies (first time only)
+npm run install:all
+
+# Start LocalStack, backend, and frontend with hot reload
+npm run dev
 ```
 
-2. Install dependencies:
+This will start:
+- **LocalStack**: http://localhost:4566 (AWS services emulation - DynamoDB, S3, SQS, etc.)
+- **Backend**: http://localhost:3001 (with hot reload, uses LocalStack)
+- **Frontend**: http://localhost:3000 (with hot reload)
+
+### Setup Local AWS Resources
+
+After LocalStack starts, initialize your resources:
+
 ```bash
-npm install
+npm run setup:local
 ```
 
-3. Start the Amplify sandbox:
-```bash
-npm run sandbox
-```
-
-This will deploy your backend to a temporary AWS environment and provide you with API endpoints.
-
-### Frontend (Web App)
-
-1. Navigate to web-app directory:
-```bash
-cd web-app
-```
-
-2. Install dependencies:
-```bash
-yarn install
-```
-
-3. Start the development server:
-```bash
-yarn dev
-```
-
-4. Open [http://localhost:3000](http://localhost:3000)
+See [LOCAL_DEVELOPMENT.md](./LOCAL_DEVELOPMENT.md) for detailed instructions on using AWS services locally.
 
 ## Deployment
 

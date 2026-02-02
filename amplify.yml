@@ -4,39 +4,17 @@ backend:
     build:
       commands:
         - echo "Starting backend build..."
-        - cd server
-        - npm install
+        - cd server && npm install
         - echo "Deploying backend with Amplify Gen 2..."
         - npx ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID || echo "Backend will be set up after frontend deployment"
 frontend:
   phases:
     preBuild:
       commands:
-        - echo "Current directory: $(pwd)"
-        - echo "Listing files:"
-        - ls -la
-        - |
-          if [ -d "web-app" ]; then
-            cd web-app
-          elif [ -d "$CODEBUILD_SRC_DIR/web-app" ]; then
-            cd $CODEBUILD_SRC_DIR/web-app
-          else
-            echo "ERROR: web-app directory not found"
-            exit 1
-          fi
-        - yarn install
+        - cd web-app && yarn install
     build:
       commands:
-        - |
-          if [ -d "web-app" ]; then
-            cd web-app
-          elif [ -d "$CODEBUILD_SRC_DIR/web-app" ]; then
-            cd $CODEBUILD_SRC_DIR/web-app
-          else
-            echo "ERROR: web-app directory not found"
-            exit 1
-          fi
-        - yarn build
+        - cd web-app && yarn build
   artifacts:
     baseDirectory: web-app/out
     files:

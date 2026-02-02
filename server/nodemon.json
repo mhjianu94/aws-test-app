@@ -1,0 +1,14 @@
+{
+  "watch": ["handler.ts", "lambda-http-server.ts", "lib/**/*.ts"],
+  "ext": "ts,js",
+  "exec": "tsx lambda-http-server.ts",
+  "ignore": ["node_modules", "amplify", "dist"],
+  "env": {
+    "NODE_ENV": "development",
+    "AWS_ENDPOINT_URL": "http://localhost:4566",
+    "AWS_REGION": "us-east-1",
+    "AWS_ACCESS_KEY_ID": "test",
+    "AWS_SECRET_ACCESS_KEY": "test"
+  }
+}
+

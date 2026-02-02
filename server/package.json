@@ -5,14 +5,22 @@
   "scripts": {
     "build": "echo 'Build complete'",
     "sandbox": "npx ampx sandbox",
-    "dev": "npx ampx sandbox"
+    "dev": "nodemon --exec 'tsx lambda-http-server.ts'",
+    "setup:local": "tsx lib/localstack-setup.ts"
   },
     "dependencies": {
       "@aws-amplify/backend": "^1.0.0",
-      "@aws-amplify/backend-cli": "^1.0.0"
+      "@aws-amplify/backend-cli": "^1.0.0",
+      "@aws-sdk/client-dynamodb": "^3.490.0",
+      "@aws-sdk/client-s3": "^3.490.0",
+      "@aws-sdk/client-sqs": "^3.490.0",
+      "@aws-sdk/client-sns": "^3.490.0"
     },
     "devDependencies": {
       "@types/aws-lambda": "^8.10.130",
-      "typescript": "^5.0.0"
+      "@types/node": "^20.0.0",
+      "typescript": "^5.0.0",
+      "nodemon": "^3.0.2",
+      "tsx": "^4.7.0"
     }
   }
