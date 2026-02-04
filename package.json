@@ -7,7 +7,6 @@
     "dev": "concurrently \"npm run dev:localstack\" \"npm run dev:backend\" \"npm run dev:frontend\"",
     "dev:localstack": "docker-compose up localstack",
     "dev:localstack:down": "docker-compose down",
-    
     "dev:backend": "cd server && npm run dev",
     "dev:frontend": "cd web-app && yarn dev",
     "setup:local": "cd server && npm run setup:local",
@@ -18,9 +17,7 @@
     "build:backend": "cd amplify && npm install"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2",
-    "@aws-amplify/backend": "~1.19.0",
-    "@aws-amplify/backend-cli": "~1.8.1"
+    "concurrently": "^8.2.2"
   }
 }
 
