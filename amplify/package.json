@@ -1,3 +1,10 @@
 {
-  "type": "module"
+  "name": "amplify-backend",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
 }
