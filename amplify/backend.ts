@@ -1,8 +1,8 @@
 import { defineBackend } from '@aws-amplify/backend';
-import { apiFunction } from './resources';
+import { auth } from './auth/resource';
+import { data } from './data/resource';
 
-// Define the Lambda function
-export const backend = defineBackend({
-    apiFunction,
-  });
-
+defineBackend({
+  auth,
+  data,
+});
