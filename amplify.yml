@@ -1,37 +1,13 @@
-version: 1
-frontend:
-  phases:
-    preBuild:
-      commands:
-        - npm install
-    build:
-      commands:
-        - npm run build
-        - |
-          # Create required server files for Amplify (static export doesn't generate these)
-          # Amplify expects these files even for static exports
-          mkdir -p out/.next/server
-          echo '{"version":3,"routes":{}}' > out/required-server-files.json
-          echo '{"version":3,"pages":{}}' > out/.next/server-files-manifest.json
-          echo '{"version":3,"routes":{}}' > out/.next/routes-manifest.json
-          # Create server trace file (empty array for static export)
-          touch out/.next/server/trace
-          # Create build manifest
-          echo '{"pages":{},"development":false}' > out/.next/build-manifest.json
-  artifacts:
-    baseDirectory: out
-    files:
-      - '**/*'
-  cache:
-    paths:
-      - node_modules/**/*
-      - .next/cache/**/*
-customHeaders:
-  - pattern: '**/*'
-    headers:
-      - key: 'Cache-Control'
-        value: 'public, max-age=0, must-revalidate'
-  - pattern: '/_next/static/**'
-    headers:
-      - key: 'Cache-Control'
-        value: 'public, max-age=31536000, immutable'
+   version: 1
+   frontend:
+     phases:
+       preBuild:
+         commands:
+           - npm install
+       build:
+         commands:
+           - npm run build
+     artifacts:
+       baseDirectory: out  # This tells Amplify it's static
+       files:
+         - '**/*'
