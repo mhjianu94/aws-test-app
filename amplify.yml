@@ -7,7 +7,17 @@ frontend:
     build:
       commands:
         - npm run build
-        - echo '{}' > out/required-server-files.json || true
+        - |
+          # Create required server files for Amplify (static export doesn't generate these)
+          # Amplify expects these files even for static exports
+          mkdir -p out/.next/server
+          echo '{"version":3,"routes":{}}' > out/required-server-files.json
+          echo '{"version":3,"pages":{}}' > out/.next/server-files-manifest.json
+          echo '{"version":3,"routes":{}}' > out/.next/routes-manifest.json
+          # Create server trace file (empty array for static export)
+          touch out/.next/server/trace
+          # Create build manifest
+          echo '{"pages":{},"development":false}' > out/.next/build-manifest.json
   artifacts:
     baseDirectory: out
     files:
