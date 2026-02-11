@@ -1,78 +1,85 @@
-# AWS Test App - Monorepo
+# Next.js AWS Amplify Deployment
 
-A monorepo containing both frontend (Next.js) and backend (Amplify Gen 2) applications.
+A Next.js frontend-only application configured for static export and deployed to AWS Amplify Hosting.
 
-## Structure
+## Features
 
-```
-aws-test-app/
-├── web-app/          # Next.js frontend application
-├── server/           # Amplify Gen 2 backend (Lambda functions)
-└── amplify.yml       # Amplify deployment configuration
-```
+- ⚡ Next.js 14 with App Router
+- 📦 Static export configuration
+- 🚀 AWS Amplify Hosting deployment
+- 🎨 Modern, responsive UI
+- 📝 TypeScript support
 
 ## Local Development
 
-### Backend (Server)
+### Prerequisites
 
-1. Navigate to server directory:
-```bash
-cd server
-```
+- Node.js 18+ installed
+- npm or yarn package manager
 
-2. Install dependencies:
-```bash
-npm install
-```
+### Running Locally
 
-3. Start the Amplify sandbox:
-```bash
-npm run sandbox
-```
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-This will deploy your backend to a temporary AWS environment and provide you with API endpoints.
+2. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
 
-### Frontend (Web App)
+3. **Open [http://localhost:3000](http://localhost:3000)** in your browser
 
-1. Navigate to web-app directory:
-```bash
-cd web-app
-```
-
-2. Install dependencies:
-```bash
-yarn install
-```
-
-3. Start the development server:
-```bash
-yarn dev
-```
-
-4. Open [http://localhost:3000](http://localhost:3000)
+4. **Build for production:**
+   ```bash
+   npm run build
+   ```
+   
+   The static export will be generated in the `out/` directory.
 
 ## Deployment
 
-The app is configured to deploy both frontend and backend via AWS Amplify.
+The app is configured to deploy to AWS Amplify Hosting.
 
-### Backend Deployment
+### AWS Amplify Deployment
 
-The backend uses Amplify Gen 2 and will be deployed using:
-```bash
-npx ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID
+The frontend is built as a static export and deployed to Amplify Hosting automatically when you push to your connected branch.
+
+The `amplify.yml` file is configured to:
+- Install dependencies
+- Build the Next.js static export
+- Deploy the `out/` directory to Amplify Hosting
+
+### Manual Deployment
+
+1. Connect your repository to AWS Amplify Console
+2. Amplify will automatically detect the `amplify.yml` configuration
+3. Push to your main branch to trigger automatic deployment
+
+## Project Structure
+
+```
+.
+├── app/                    # Next.js App Router
+│   ├── layout.tsx         # Root layout
+│   ├── page.tsx           # Home page
+│   └── globals.css        # Global styles
+├── components/            # React components
+├── lib/                   # Utility libraries
+├── amplify.yml            # Amplify deployment configuration
+├── next.config.js         # Next.js configuration
+├── package.json
+├── tsconfig.json
+└── README.md
 ```
 
-### Frontend Deployment
+## Configuration
 
-The frontend is built as a static export and deployed to Amplify Hosting.
+### Next.js Config
 
-## Environment Variables
+The app is configured for static export in `next.config.js`:
+- `output: 'export'` - Enables static export
+- `images.unoptimized: true` - Required for static export
 
-For the frontend to connect to the backend, you'll need to set:
-- `NEXT_PUBLIC_API_URL` - The backend API endpoint URL (provided by Amplify backend outputs)
-
-## Testing API Endpoints
-
-Visit `/api-test` page in your frontend to test the backend endpoints:
-- `/health` - Health check endpoint
-- `/api/hello` - Hello endpoint
+This configuration makes the app perfect for static hosting on AWS Amplify.

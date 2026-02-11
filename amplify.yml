@@ -1,27 +1,17 @@
 version: 1
-backend:
-  phases:
-    build:
-      commands:
-        - cd server
-        - npm install
-        - npx ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID
 frontend:
   phases:
     preBuild:
       commands:
-        - cd web-app
-        - yarn install
+        - npm install
     build:
       commands:
-        - cd web-app
-        - yarn build
+        - npm run build
   artifacts:
-    baseDirectory: web-app/out
+    baseDirectory: out
     files:
       - '**/*'
   cache:
     paths:
-      - web-app/node_modules/**/*
-      - web-app/.next/cache/**/*
-      - server/node_modules/**/*
+      - node_modules/**/*
+      - .next/cache/**/*
